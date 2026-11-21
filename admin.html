@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101f36">
+  <link rel="icon" type="image/png" href="assets/rds-logo.png">
+  <title>Admin Media Upload | RDS Road Marking &amp; Safety</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-wrap{max-width:850px;margin:0 auto}.admin-panel{background:#fff;border:1px solid #e6eaf0;border-radius:14px;padding:28px;box-shadow:var(--shadow)}
+    .admin-panel label{display:block;font-weight:700;margin:14px 0 7px}.admin-panel input:not([type=file]){width:100%;padding:14px;border:1px solid #ccd3dc;border-radius:7px;font:inherit;min-height:48px}.admin-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.admin-actions .btn{min-height:48px}.admin-message{margin-top:16px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}.admin-photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:22px}.admin-photo{border:1px solid #e5e7eb;border-radius:9px;overflow:hidden;background:#fff}.admin-photo img{width:100%;height:150px;object-fit:cover}.admin-video-card video{display:block;width:100%;height:150px;object-fit:cover;background:#101f36}.admin-section-title{margin:30px 0 8px;color:var(--navy)}.admin-photo button{margin:8px;width:calc(100% - 16px);min-height:44px}.upload-help{font-size:14px;color:var(--muted);margin:0 0 14px}.file-picker{display:block;border:2px dashed #cbd5e1;border-radius:12px;padding:20px;background:#f8fafc;text-align:center;cursor:pointer}.file-picker strong{display:block;color:var(--navy);font-size:15px}.file-picker span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.file-picker input{display:block;width:100%;margin-top:12px;font-size:14px}.admin-top{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.admin-top h2{margin-bottom:8px}.photo-count{font-size:13px;color:var(--muted);margin:8px 0 0}.hidden{display:none!important}
+    @media(max-width:700px){.admin-wrap{width:min(100% - 24px,560px)}.admin-panel{padding:18px;border-radius:12px}.admin-panel h2{font-size:24px}.admin-actions{display:grid;grid-template-columns:1fr;gap:10px}.admin-actions .btn{width:100%;min-height:52px;padding:14px}.admin-top{display:block}.file-picker{padding:16px 12px}.file-picker input{font-size:13px}.admin-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.admin-photo img,.admin-video-card video{height:145px}.admin-photo button{margin:7px;width:calc(100% - 14px);min-height:44px;padding:10px;font-size:12px}.admin-message{font-size:13px}.page-hero{padding:48px 0}.page-hero h1{font-size:34px}.page-hero p{font-size:14px}}
+    @media(max-width:360px){.admin-photo-grid{grid-template-columns:1fr}.admin-photo img{height:190px}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">RESTRICTED AREA</span><h1>Admin Media Upload</h1><p>Sign in to add or remove project photos and videos.</p></div></section>
+    <section class="section"><div class="container admin-wrap">
+      <div class="admin-panel" id="login-panel">
+        <h2>Admin Login</h2>
+        <form id="login-form"><label for="admin-email">Email address</label><input id="admin-email" type="email" autocomplete="username" required><label for="admin-password">Password</label><input id="admin-password" type="password" autocomplete="current-password" required><div class="admin-actions"><button class="btn btn-primary" type="submit">Sign in</button></div></form>
+      </div>
+      <div class="admin-panel hidden" id="upload-panel">
+        <div class="admin-top"><div><h2>Manage Project Media</h2><p class="upload-help">Upload or delete work photos and videos. The dashboard also works on your phone.</p></div></div>
+        <h3 class="admin-section-title">Photos</h3>
+        <label class="file-picker" for="photo-files"><strong>📷 Select photos from your phone</strong><span>JPG, PNG or WebP · Up to 10 MB each · Multiple selection supported</span><input id="photo-files" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
+        <p class="photo-count" id="selected-count">No photos selected yet.</p>
+        <div class="admin-actions"><button class="btn btn-primary" id="upload-button" type="button">Upload selected photos</button></div>
+        <h3 class="admin-section-title">Videos</h3>
+        <label class="file-picker" for="video-files"><strong>🎬 Select videos from your phone</strong><span>MP4 or WebM · Up to 50 MB each · Multiple selection supported</span><input id="video-files" type="file" accept="video/mp4,video/webm" multiple></label>
+        <p class="photo-count" id="selected-video-count">No videos selected yet.</p>
+        <div class="admin-actions"><button class="btn btn-primary" id="upload-video-button" type="button">Upload selected videos</button><button class="btn btn-dark" id="logout-button" type="button">Sign out</button></div>
+        <p class="admin-message" id="admin-message" role="status" aria-live="polite"></p>
+        <h3 class="admin-section-title">Published photos</h3><div class="admin-photo-grid" id="admin-photo-grid"></div>
+        <h3 class="admin-section-title">Published videos</h3><div class="admin-photo-grid" id="admin-video-grid"></div>
+      </div>
+    </div></section>
+  </main>
+  <div id="site-footer"></div><script src="js/main.js"></script>
+  <script src="js/vendor/supabase-2.119.2.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body></html>

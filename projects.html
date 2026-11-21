@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View RDS road marking and road safety project photographs.">
+  <meta name="theme-color" content="#101f36">
+  <link rel="icon" type="image/png" href="assets/rds-logo.png">
+  <title>Projects &amp; Gallery | RDS Road Marking &amp; Safety Construction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">OUR WORK</span><h1>Projects &amp; Gallery</h1><p>A look at road marking and road safety work.</p></div></section>
+    <section class="section"><div class="container">
+      <p id="gallery-status" class="gallery-status" role="status"></p>
+      <h2 class="gallery-section-heading">Project Photos</h2>
+      <div class="gallery-grid" id="projects-gallery" aria-live="polite"></div>
+      <section id="video-gallery-section" class="video-gallery-section" hidden>
+        <h2 class="gallery-section-heading">Project Videos</h2>
+        <div class="projects-video-grid" id="projects-video-gallery" aria-live="polite"></div>
+      </section>
+      <div class="photo-modal" id="photo-modal" hidden role="dialog" aria-modal="true" aria-label="Project photo preview">
+        <button type="button" class="photo-modal-close" id="photo-modal-close" aria-label="Close photo preview">&times;</button>
+        <img id="photo-modal-image" alt="Expanded RDS project photo">
+      </div>
+    </div></section>
+  </main>
+  <div id="site-footer"></div><script src="js/main.js"></script><script src="js/vendor/supabase-2.119.2.js"></script><script type="module" src="js/projects-gallery.js"></script>
+</body></html>
